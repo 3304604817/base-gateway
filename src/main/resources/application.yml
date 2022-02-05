@@ -22,3 +22,6 @@ spring:
           filters:
             # 断言匹配到的路由在gateway转发前去掉一级路径
             - StripPrefix=1
+    sentinel:
+      transport:
+        dashboard: 39.101.202.67:8858
