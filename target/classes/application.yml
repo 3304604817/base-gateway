@@ -1,0 +1,22 @@
+server:
+  port: 8000
+  servlet:
+    # 项目虚拟路径
+    context-path: /
+spring:
+  application:
+    name: base-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 39.101.202.67:8848
+    gateway:
+      routes:
+        - id: base-basic # 路由唯一标志(自定义)
+          # lb使用nacos中本地负载均衡策略,base-basic服务名
+          uri: lb://base-basic
+          # 断言，路由规则匹配
+          predicates:
+            - Path=/basic/**
+          filters:
+            - StripPrefix=1 # 转发前去掉一级路径
